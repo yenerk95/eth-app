@@ -654,8 +654,9 @@ if(on){
           </div>
 
          </body>
-
-
+         <body className="fintech">
+         <div><button onClick={withdraw}>Withdraw Funds</button></div>
+         </body>
 
       </header>
 
