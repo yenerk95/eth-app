@@ -2,7 +2,7 @@ This project was bootstrapped with [Create Eth App](https://github.com/paulrberg
 
 ## ETH-IPFS Letter of Credit Example App
 
-https://eth-app.yenerk95.vercel.app/
+https://eth-app-final.yenerk95.vercel.app/
 
 (Metamask is required)
 
