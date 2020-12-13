@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 25vmin;
+  margin-bottom: 5px;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+  margin-top: 5px;
+}
+
+.mark-red {
+    color:	#980000  ;
+    background: none;
+}
+.mark-yellow {
+  color:#ffee00;
+  background: none;
+}
+
+.buyer{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+
+.seller{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+
+.fintech{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+
+.info{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+
+.files{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+.banks{
+  width : 60%; 
+  height : 50%;
+  border : 5px solid #191b1f;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(25, 27, 31, 0.3);
+}
+
+
+.color-red{
+  color: #F00;
+}
