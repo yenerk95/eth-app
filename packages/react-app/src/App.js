@@ -273,7 +273,7 @@ function App() {
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
-      await storageWithSigner.destroycontract(false);
+      await storageWithSigner.destroycontract();
       
     }
     catch(err) {
