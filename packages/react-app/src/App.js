@@ -838,6 +838,14 @@ else if(on2){
       <div>Current User Hash: <mark className="mark-red">{accountHash}</mark></div>
 
       </body>
+      <body className="banks">
+
+      <div>
+      Smart Contract Files: <input type="text" placeholder="Buyer or Seller Hash" value={itemInput3} onChange={e => setItemInput3(e.target.value)}/>
+      <button onClick={getContractFile}>See Contract Files</button>
+      </div>
+      <a id="myAnchor" href=""></a>
+      </body>
 
          <body className="banks">
          <div>
