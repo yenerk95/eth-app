@@ -25,16 +25,17 @@ var storageContract;
 console.log( addresses.ipfs);
 
 async function initIpfs() {
+
   node = await IPFS.create();
   const version = await node.version();
   console.log("IPFS Node Version:", version.version);
+
 }
 
 async function readCurrentUserFile() {
+
  // const result = await ipfsContrstact.userFiles(
   //  defaultProvider.getSigner().getAddress()
-    
-  
   //);
  // console.log({ result });
  
@@ -43,17 +44,16 @@ async function readCurrentUserFile() {
   
   return dict[account];
 }
+
 async function getaccount(){
+
   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
   Object.values(accounts);
   const account =JSON.stringify(accounts[0]);
-  console.log("FUNC");
-
-  console.log({ account });
 
 return account
-}
 
+}
 
 function App() {
   const [ipfsHash, setIpfsHash] = useState("");
@@ -71,7 +71,6 @@ function App() {
     readFile();
   }, []);
 
-
   const [accountHash, setAccountHash] = useState("");
   useEffect(() => {
     window.ethereum.enable();
@@ -88,8 +87,8 @@ function App() {
   }, []);
 
 
-
   async function setFile(hash) {
+
     dict[accountHash]=hash;
 
    // const ipfsWithSigner = ipfsContract.connect(defaultProvider.getSigner());
@@ -99,17 +98,16 @@ function App() {
     setIpfsHash(hash);
     
     //yipfsWithSigner.store(hash);
-
   
   }
 
    function SetContract() {
+
     storageContract = new ethers.Contract(itemInput2, abis.storage, defaultProvider);
     console.log(itemInput2);
     console.log(abis.storage);
     console.log(storageContract);
 
-      
     try {
       if(itemInput2== "") throw "Empty! Enter Smart Contract Hash.";
       if(isNaN(itemInput2)) throw "Not a number! Enter Smart Contract Hash.";
@@ -129,10 +127,8 @@ function App() {
   
   }
 
-
   async function Buyer() {
 
-  
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.buyerUpload(ipfsHash,itemInput);
@@ -144,14 +140,10 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
-
   async function Seller() {
-
-
-    
+ 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.sellerUpload(ipfsHash);
@@ -163,12 +155,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function Extend() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -181,15 +170,12 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
-
 
   async function status() {
 
     var status_array=["ON", "BUYER_UPLOADED", "SELLER_UPLOADED", "DOC_OK", "DOC_DEFECT", "DOC_REJECTED","MONEY_SENT"];
     var time_array=["ON_TIME", "OUT_OF_TIME"];
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -210,15 +196,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-    
-  
   }
 
-
-
   async function compliancetrue() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -231,13 +211,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
-
   async function waivetrue() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -250,7 +226,6 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function waivefalse() {
@@ -267,9 +242,8 @@ function App() {
     }   
   
   }
+
   async function destroy() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -282,22 +256,17 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function moneyupload() {
 
-
-
     try {
-
 
       var transactionParameters = await{
 
         to: itemInput2.toString(), // Required except during contract publications.
         from: window.ethereum.selectedAddress, // must match user's active address.
         value: '0x'+(itemInput4*1000000000000000000).toString(16)
-
 
       };
       
@@ -317,11 +286,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
+  
   async function withdraw() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -334,12 +301,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function getbuyer() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -362,8 +326,6 @@ function App() {
 
   async function getseller() {
 
-
-
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var s= await storageWithSigner.getSeller();
@@ -375,7 +337,6 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
 
-
     console.log(window.ethereum.selectedAddress);
     console.log(s);
     if(window.ethereum.selectedAddress.toString().toLowerCase()==s.toString().toLowerCase()){ setOn2(true)}
@@ -385,8 +346,6 @@ function App() {
   }
 
   async function getfintech() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -408,8 +367,6 @@ function App() {
 
   async function getrighttovote() {
 
-
-
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var v = await storageWithSigner.getRightToVote(window.ethereum.selectedAddress.toString().toLowerCase());
@@ -426,12 +383,10 @@ function App() {
     if(v){ setOn3(true)}
     else{setOn3(false)};
     return v;
+
   }
 
-  
-
   async function getContractFile() {
-
     
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -448,12 +403,10 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
 
-       
-  
   }
+
   async function voteright() {
 
-  
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner. giveRightToVote(itemInputV.toString().toLowerCase());
@@ -465,12 +418,10 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function removevoteright() {
 
-  
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner. removeRightToVote(itemInputV1.toString().toLowerCase());
@@ -482,12 +433,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function endtime() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -500,12 +448,9 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
 
   async function vote() {
-
-
 
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
@@ -518,20 +463,15 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-  
   }
   
-
   async function votingstatus() {
 
     var status_array=["ON", "BUYER_UPLOADED", "SELLER_UPLOADED", "DOC_OK", "DOC_DEFECT", "DOC_REJECTED","MONEY_SENT"];
     var time_array=["ON_TIME", "OUT_OF_TIME"];
 
-
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
-
-   
 
       var statust = await storageWithSigner.getStatus();
 
@@ -547,10 +487,7 @@ function App() {
       document.getElementById("text-box").innerHTML = err.message
     }
     
-    
-  
   }
-
 
   const uploadFile = useCallback(async (file) => {
     const files = [
@@ -586,10 +523,12 @@ function App() {
   console.log(itemInput3);
   const [itemInput4, setItemInput4] = useState("");
   console.log(itemInput4);
+
   const [on, setOn] = useState(false);
   const [on1, setOn1] = useState(false);
   const [on2, setOn2] = useState(false);
   const [on3, setOn3] = useState(false);
+  
   const [itemInputV, setItemInputV] = useState("");
   console.log(itemInputV);
   const [itemInputV1, setItemInputV1] = useState("");
@@ -598,10 +537,6 @@ function App() {
   console.log(itemInputV3);
   const [itemInputV4, setItemInputV4] = useState("");
   console.log(itemInputV4);
-
-  
-  
-
 
   
 if(on){
