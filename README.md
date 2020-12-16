@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create Eth App](https://github.com/paulrberg/create-eth-app).
+# Project Repository: 
+
+[Here](https://github.com/CaterinaFabbri/LetterCredit) 
 
 ## ETH-IPFS Letter of Credit Example App
 
@@ -11,6 +13,10 @@ https://eth-app-final.yenerk95.vercel.app/
 ![](images/eth-app-buyer.png)
 ![](images/eth-app-seller.png)
 ![](images/eth-app-banks.png)
+
+This project was bootstrapped with [Create Eth App](https://github.com/paulrberg/create-eth-app).
+
+
 
 
 
