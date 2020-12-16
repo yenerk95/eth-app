@@ -11,9 +11,9 @@ import "./App.css";
 const ZERO_ADDRESS =
   "0x0000000000000000000000000000000000000000000000000000000000000000";
 
-let node;
+let node; // IPFS
 
-var dict = {};
+var dict = {}; //to keep user hash
 
 const defaultProvider = new ethers.providers.Web3Provider(window.ethereum);
 //const ipfsContract = new ethers.Contract(
@@ -21,7 +21,7 @@ const defaultProvider = new ethers.providers.Web3Provider(window.ethereum);
   //abis.ipfs,
   //defaultProvider
 //);
-var storageContract;
+var storageContract; //contract is set with the set contract function when user enters the hash of the contract
 console.log( addresses.ipfs);
 
 async function initIpfs() {
@@ -46,6 +46,7 @@ async function readCurrentUserFile() {
 }
 
 async function getaccount(){
+  //get user account hash
 
   const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
   Object.values(accounts);
@@ -54,7 +55,7 @@ async function getaccount(){
 return account
 
 }
-
+// get ipfsHash Using the State Effect Hook
 function App() {
   const [ipfsHash, setIpfsHash] = useState("");
   useEffect(() => {
@@ -70,7 +71,7 @@ function App() {
     }
     readFile();
   }, []);
-
+// get accountHash Using the State Effect Hook
   const [accountHash, setAccountHash] = useState("");
   useEffect(() => {
     window.ethereum.enable();
@@ -102,7 +103,7 @@ function App() {
   }
 
    function SetContract() {
-
+   //contract is set with the set contract function when user enters the hash of the contract
     storageContract = new ethers.Contract(itemInput2, abis.storage, defaultProvider);
     console.log(itemInput2);
     console.log(abis.storage);
@@ -128,7 +129,7 @@ function App() {
   }
 
   async function Buyer() {
-
+    //Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.buyerUpload(ipfsHash,itemInput);
@@ -143,7 +144,7 @@ function App() {
   }
 
   async function Seller() {
- 
+ //Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.sellerUpload(ipfsHash);
@@ -158,7 +159,7 @@ function App() {
   }
 
   async function Extend() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.ExtendTime(itemInput1);
@@ -173,7 +174,7 @@ function App() {
   }
 
   async function status() {
-
+//Smart Contract Function
     var status_array=["ON", "BUYER_UPLOADED", "SELLER_UPLOADED", "DOC_OK", "DOC_DEFECT", "DOC_REJECTED","MONEY_SENT"];
     var time_array=["ON_TIME", "OUT_OF_TIME"];
 
@@ -199,7 +200,7 @@ function App() {
   }
 
   async function compliancetrue() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.checkCompliance();
@@ -214,7 +215,7 @@ function App() {
   }
 
   async function waivetrue() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.waiveDiscrepancies(true);
@@ -229,7 +230,7 @@ function App() {
   }
 
   async function waivefalse() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.waiveDiscrepancies(false);
@@ -244,7 +245,7 @@ function App() {
   }
 
   async function destroy() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.destroycontract();
@@ -259,7 +260,7 @@ function App() {
   }
 
   async function moneyupload() {
-
+// Money is uploaded to the contract using metamask
     try {
 
       var transactionParameters = await{
@@ -289,7 +290,7 @@ function App() {
   }
   
   async function withdraw() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.withdrawFunds();
@@ -304,7 +305,7 @@ function App() {
   }
 
   async function getbuyer() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var b = await storageWithSigner.getBuyer();
@@ -325,7 +326,7 @@ function App() {
   }
 
   async function getseller() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var s= await storageWithSigner.getSeller();
@@ -346,7 +347,7 @@ function App() {
   }
 
   async function getfintech() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var f= await storageWithSigner.getFintech();
@@ -366,7 +367,7 @@ function App() {
   }
 
   async function getrighttovote() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       var v = await storageWithSigner.getRightToVote(window.ethereum.selectedAddress.toString().toLowerCase());
@@ -387,7 +388,7 @@ function App() {
   }
 
   async function getContractFile() {
-    
+    //Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
 
@@ -406,7 +407,7 @@ function App() {
   }
 
   async function voteright() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner. giveRightToVote(itemInputV.toString().toLowerCase());
@@ -421,7 +422,7 @@ function App() {
   }
 
   async function removevoteright() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner. removeRightToVote(itemInputV1.toString().toLowerCase());
@@ -436,7 +437,7 @@ function App() {
   }
 
   async function endtime() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.VotingEndTime(itemInputV3);
@@ -451,7 +452,7 @@ function App() {
   }
 
   async function vote() {
-
+//Smart Contract Function
     try {
       const storageWithSigner = storageContract.connect(defaultProvider.getSigner());
       await storageWithSigner.vote(itemInputV4);
@@ -466,7 +467,7 @@ function App() {
   }
   
   async function votingstatus() {
-
+//Smart Contract Function
     var status_array=["ON", "BUYER_UPLOADED", "SELLER_UPLOADED", "DOC_OK", "DOC_DEFECT", "DOC_REJECTED","MONEY_SENT"];
     var time_array=["ON_TIME", "OUT_OF_TIME"];
 
@@ -512,7 +513,7 @@ function App() {
     multiple: false,
     onDrop,
   });
-
+// Using the State Hook for getting user inputs 
   const [itemInput, setItemInput] = useState("");
   console.log(itemInput);
   const [itemInput1, setItemInput1] = useState("");
@@ -524,11 +525,13 @@ function App() {
   const [itemInput4, setItemInput4] = useState("");
   console.log(itemInput4);
 
-  const [on, setOn] = useState(false);
-  const [on1, setOn1] = useState(false);
-  const [on2, setOn2] = useState(false);
-  const [on3, setOn3] = useState(false);
-  
+// Using the State Hook for conditional rendering (if all of them are false, Login page is rendered)
+  const [on, setOn] = useState(false);//Fintech page
+  const [on1, setOn1] = useState(false);//Buyer page
+  const [on2, setOn2] = useState(false);//Seller page
+  const [on3, setOn3] = useState(false);//Banks page
+
+// Using the State Hook for getting user inputs 
   const [itemInputV, setItemInputV] = useState("");
   console.log(itemInputV);
   const [itemInputV1, setItemInputV1] = useState("");
